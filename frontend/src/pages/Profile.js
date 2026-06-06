@@ -19,7 +19,7 @@ export default function Profile() {
       setProfile(r.data);
       setForm({ phone: r.data.phone || '', address: r.data.address || '', avatar: r.data.avatar || '' });
     }).catch(() => {}).finally(() => setLoading(false));
-  }, [isAuth]);
+  }, [isAuth,navigate]);
 
   const handle = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
 

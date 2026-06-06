@@ -15,8 +15,28 @@ export default function Footer() {
             Where every sip tells a story. Crafted with passion, served with love.
           </p>
           <div style={{ display: 'flex', gap: 10 }}>
-            {[Instagram, Facebook, Twitter].map((Icon, i) => (
-              <a key={i} href="#" style={{ width: 36, height: 36, borderRadius: '50%', background: 'rgba(200,168,130,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#c8a882', textDecoration: 'none' }}>
+            {[
+              ['https://instagram.com', Instagram],
+              ['https://facebook.com', Facebook],
+              ['https://twitter.com', Twitter]
+            ].map(([url, Icon], i) => (
+              <a
+                key={i}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: '50%',
+                  background: 'rgba(200,168,130,0.15)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#c8a882',
+                  textDecoration: 'none'
+                }}
+              >
                 <Icon size={18} />
               </a>
             ))}

@@ -21,7 +21,7 @@ export default function Bookings() {
   useEffect(() => {
     if (!isAuth) { navigate('/login'); return; }
     bookingAPI.list().then(r => setBookings(r.data)).catch(() => {}).finally(() => setLoading(false));
-  }, [isAuth]);
+  }, [isAuth,navigate]);
 
   const cancel = async id => {
     try {

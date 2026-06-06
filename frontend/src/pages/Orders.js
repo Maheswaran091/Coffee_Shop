@@ -24,7 +24,7 @@ export default function Orders() {
   useEffect(() => {
     if (!isAuth) { navigate('/login'); return; }
     orderAPI.list().then(r => setOrders(r.data)).catch(() => {}).finally(() => setLoading(false));
-  }, [isAuth]);
+  }, [isAuth,navigate]);
 
   const cancel = async id => {
     try {
