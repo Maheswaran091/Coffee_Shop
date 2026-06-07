@@ -1,5 +1,10 @@
 from pathlib import Path
 from datetime import timedelta
+import os
+import dj_database_url
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-coffeeshop-secret-key-change-in-production-2024'
@@ -50,16 +55,13 @@ WSGI_APPLICATION = 'coffeeshop_backend.wsgi.application'
 
 # ===================== DATABASE =====================
 # MySQL (Primary) — update USER/PASSWORD/HOST
+import os
+import dj_database_url
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'coffeeshop_db',
-        'USER': 'root',
-        'PASSWORD': '9488473449SQL2o@',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'OPTIONS': {'charset': 'utf8mb4'},
-    }
+    'default': dj_database_url.parse(
+        os.environ.get('DATABASE_URL')
+    )
 }
 # SQLite fallback — uncomment these 3 lines and comment MySQL block above:
 # DATABASES = {
