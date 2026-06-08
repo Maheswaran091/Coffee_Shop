@@ -14,10 +14,12 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     "coffee-shop-36f7.onrender.com",
+    "coffeeshop-production-f44d.up.railway.app",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://coffee-shop-36f7.onrender.com",
+    "https://coffeeshop-production-f44d.up.railway.app",
 ]
 
 INSTALLED_APPS = [
@@ -71,6 +73,9 @@ DATABASE_URL = os.environ.get("DATABASE_URL")
 
 
 DATABASE_URL = os.getenv("DATABASE_URL")
+
+if not DATABASE_URL:
+    raise Exception("DATABASE_URL is not configured")
 
 DATABASES = {
     "default": dj_database_url.parse(DATABASE_URL)
