@@ -7,11 +7,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 SECRET_KEY = 'django-insecure-coffeeshop-secret-key-change-in-production-2024'
+
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    ".railway.app",
+    "coffeeshop-production-f44d.up.railway.app",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
