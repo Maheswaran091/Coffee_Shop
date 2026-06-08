@@ -69,16 +69,8 @@ import dj_database_url
 
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
-print("DATABASE_URL =", repr(DATABASE_URL))
-print("TYPE =", type(DATABASE_URL))
 
 DATABASE_URL = os.getenv("DATABASE_URL")
-
-print("DATABASE_URL =", DATABASE_URL)
-print("TYPE =", type(DATABASE_URL))
-
-if not DATABASE_URL:
-    raise Exception("DATABASE_URL is not set in Railway Variables")
 
 DATABASES = {
     "default": dj_database_url.parse(DATABASE_URL)
