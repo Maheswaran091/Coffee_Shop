@@ -13,11 +13,11 @@ SECRET_KEY = 'django-insecure-coffeeshop-secret-key-change-in-production-2024'
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    "coffeeshop-production-f44d.up.railway.app",
+    "coffee-shop-36f7.onrender.com",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://coffeeshop-production-f44d.up.railway.app",
+    "https://coffee-shop-36f7.onrender.com",
 ]
 
 INSTALLED_APPS = [
