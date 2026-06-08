@@ -58,6 +58,11 @@ WSGI_APPLICATION = 'coffeeshop_backend.wsgi.application'
 import os
 import dj_database_url
 
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+print("DATABASE_URL =", repr(DATABASE_URL))
+print("TYPE =", type(DATABASE_URL))
+
 DATABASES = {
     'default': dj_database_url.parse(
         os.environ.get('DATABASE_URL')
