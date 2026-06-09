@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+print("DATABASE_URL =", os.getenv("DATABASE_URL"))
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-coffeeshop-secret-key-change-in-production-2024'
