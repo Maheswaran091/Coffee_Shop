@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-coffeeshop-secret-key-change-in-production-2024'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "coffee-shop-36f7.onrender.com",
