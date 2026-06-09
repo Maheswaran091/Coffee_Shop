@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://localhost:8000/api' });
+const API = axios.create({ baseURL: 'https://coffee-shop-36f7.onrender.com/api' });
 
 API.interceptors.request.use(cfg => {
   const token = localStorage.getItem('access');
@@ -15,7 +15,7 @@ API.interceptors.response.use(
       const refresh = localStorage.getItem('refresh');
       if (refresh) {
         try {
-          const { data } = await axios.post('http://localhost:8000/api/auth/refresh/', { refresh });
+          const { data } = await axios.post('https://coffee-shop-36f7.onrender.com/api/auth/refresh/', { refresh });
           localStorage.setItem('access', data.access);
           err.config.headers.Authorization = `Bearer ${data.access}`;
           return API(err.config);
