@@ -75,11 +75,16 @@ DATABASE_URL = os.environ.get("DATABASE_URL")
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 if not DATABASE_URL:
-    raise Exception("DATABASE_URL is not configured")
-
-DATABASES = {
-    "default": dj_database_url.parse(DATABASE_URL)
-}
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
+else:
+    DATABASES = {
+        "default": dj_database_url.parse(DATABASE_URL)
+    }
 # SQLite fallback — uncomment these 3 lines and comment MySQL block above:
 # DATABASES = {
 #     'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': BASE_DIR / 'db.sqlite3'}
