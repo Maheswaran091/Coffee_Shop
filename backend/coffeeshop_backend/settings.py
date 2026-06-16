@@ -14,12 +14,12 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     "coffee-shop-36f7.onrender.com",
-    "coffeeshop-production-f44d.up.railway.app",
+    "coffeeshop-production-6377.up.railway.app",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://coffee-shop-36f7.onrender.com",
-    "https://coffeeshop-production-f44d.up.railway.app",
+    "https://coffeeshop-production-6377.up.railway.app",
 ]
 
 INSTALLED_APPS = [
