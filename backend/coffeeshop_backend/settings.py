@@ -6,8 +6,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-print("DATABASE_URL =", os.getenv("DATABASE_URL"))
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-coffeeshop-secret-key-change-in-production-2024'
@@ -49,6 +47,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'coffeeshop_backend.urls'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -64,33 +63,30 @@ TEMPLATES = [
         },
     }
 ]
+
 WSGI_APPLICATION = 'coffeeshop_backend.wsgi.application'
 
 # ===================== DATABASE =====================
-# MySQL (Primary) — update USER/PASSWORD/HOST
-import os
-import dj_database_url
-
-DATABASE_URL = os.environ.get("DATABASE_URL")
-
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-if not DATABASE_URL:
+if DATABASE_URL:
+    DATABASES = {
+        "default": dj_database_url.parse(
+            DATABASE_URL,
+            conn_max_age=600,
+            ssl_require=False
+        )
+    }
+else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
             "NAME": BASE_DIR / "db.sqlite3",
         }
     }
-else:
-    DATABASES = {
-        "default": dj_database_url.parse(DATABASE_URL)
-    }
-# SQLite fallback — uncomment these 3 lines and comment MySQL block above:
-# DATABASES = {
-#     'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': BASE_DIR / 'db.sqlite3'}
-# }
+
+# ===================== PASSWORD VALIDATION =====================
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -98,14 +94,25 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
+
+# ===================== INTERNATIONALIZATION =====================
+
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Asia/Kolkata'
 USE_I18N = True
 USE_TZ = True
+
+# ===================== STATIC & MEDIA =====================
+
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# ===================== CORS =====================
 
 CORS_ALLOW_ALL_ORIGINS = True
 
@@ -115,10 +122,17 @@ CORS_ALLOWED_ORIGINS = [
     "https://coffeeshop-production-f44d.up.railway.app",
 ]
 
+# ===================== REST FRAMEWORK =====================
+
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication',),
-    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated'
+    ],
 }
+
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=24),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
